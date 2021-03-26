@@ -1,0 +1,43 @@
+<div class="movement-wrapper">
+  <mat-button-toggle-group (change)="setOrderByDateAscending($event)" name="orderByDateAscending">
+    <mat-button-toggle value=true>Order by date ascending</mat-button-toggle>
+    <mat-button-toggle value=false>Order by date descending</mat-button-toggle>
+  </mat-button-toggle-group>
+  <mat-button-toggle-group (change)="setOrderByAmountAscending($event)" name="orderByAmountAscending">
+    <mat-button-toggle value=true>Order by amount ascending</mat-button-toggle>
+    <mat-button-toggle value=false>Order by amount descending</mat-button-toggle>
+  </mat-button-toggle-group>
+  <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
+    <ng-container matColumnDef="recipientAccountNumber">
+      <th *matHeaderCellDef mat-header-cell>recipientAccountNumber</th>
+      <td *matCellDef="let element" mat-cell> {{element.recipientAccountNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="senderAccountNumber">
+      <th *matHeaderCellDef mat-header-cell>senderAccountNumber</th>
+      <td *matCellDef="let element" mat-cell> {{element.senderAccountNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th *matHeaderCellDef mat-header-cell>description</th>
+      <td *matCellDef="let element" mat-cell> {{element.description}} </td>
+    </ng-container>
+    <ng-container matColumnDef="originalCurrency">
+      <th *matHeaderCellDef mat-header-cell>originalCurrency</th>
+      <td *matCellDef="let element" mat-cell> {{element.originalCurrency}} </td>
+    </ng-container>
+    <ng-container matColumnDef="amount">
+      <th *matHeaderCellDef mat-header-cell>amount(USD)</th>
+      <td *matCellDef="let element" mat-cell> {{element.amount}} </td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th *matHeaderCellDef mat-header-cell>date</th>
+      <td *matCellDef="let element" mat-cell> {{element.date}} </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+  <mat-paginator (page)="pageEvent = getServerData($event)"
+                 [length]="length"
+                 [pageSizeOptions]="pageSizeOptions"
+                 [pageSize]="pageSize">
+  </mat-paginator>
+</div>
