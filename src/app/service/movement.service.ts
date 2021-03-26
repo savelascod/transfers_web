@@ -19,8 +19,8 @@ export class MovementService {
   public getTransfers(orderByDateAscending: boolean, orderByAmountAscending: boolean, page: number, size: number): Observable<any> {
     return this.httpclient.post(environment.baseUrl + UrlConstant.GET_TRANSFERS +
       '?page=' + page + '&size=' + size, {
-      orderByDateAscending,
-      orderByAmountAscending
+      dateAscendant: orderByDateAscending,
+      amountAscendant: orderByAmountAscending
     }, {
       headers: new HttpHeaders({
         [HeaderConstant.AUTHORIZATION]: 'Bearer ' + sessionStorage.getItem(SessionConstant.SESSION_TOKEN)
